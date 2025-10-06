@@ -24,7 +24,7 @@ crypto-donate.cryptodonate-loaded {
     width: var(--crypto-donate-width);
     border-radius: var(--crypto-donate-radius);
     box-shadow: var(--crypto-donate-shadow);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: Consolas;
     overflow: hidden;
     transition: all 0.3s ease;
     background-color: var(--crypto-donate-bg);
@@ -506,7 +506,7 @@ crypto-donate.cryptodonate-loaded {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     cursor: pointer;
     border: 1px solid #e2e8f0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: Consolas, sans-serif;
     color: #2d3748;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -577,7 +577,7 @@ crypto-donate[data-theme="transparent"] .cryptodonate-trigger:hover {
 .crypto-icon-1 {
     left: 0;
     z-index: 3;
-    background-color: #2a2a2a;
+    background-color: #fff;
     padding: 4px;
 }
 
@@ -591,7 +591,7 @@ crypto-donate[data-theme="transparent"] .cryptodonate-trigger:hover {
 .crypto-icon-3 {
     left: 36px;
     z-index: 1;
-    background-color: #00d4aa;
+    background-color: #000000;
     padding: 4px;
 }
 

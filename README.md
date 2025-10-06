@@ -1,14 +1,16 @@
 # CryptoDonate.js
 
-A lightweight, customizable client-side cryptocurrency donation widget that's easy to embed on any website. Accept Bitcoin, Ethereum, Solana, USDT, and Monero donations with beautiful QR codes and multiple themes.
+A lightweight, customizable client-side cryptocurrency donation widget that's easy to embed on any website.
+
+Accept Bitcoin, Ethereum, Solana, USDT, and Monero donations using QR codes and multiple themes.
 
 ## Features
 
 - **Zero Dependencies** - Pure vanilla JavaScript, no frameworks required
-- **Multiple Themes** - Light, dark, and transparent glassmorphism themes
+- **Multiple Themes** - Light, dark, and transparent glass themes
 - **Responsive Design** - Works perfectly on desktop and mobile devices
-- **Highly Customizable** - Custom colors, titles, messages, and accent colors
-- **Multi-Crypto Support** - Bitcoin, Ethereum, Solana, USDT, and Monero
+- **Highly Customizable** - Customizable colors, titles, messages, and accent colors
+- **Multi-Crypto Support** - Bitcoin, Ethereum, Solana, USDT, and Monero (and more!)
 - **One-Click Copy** - Copy wallet addresses with visual feedback
 - **Privacy-First** - No tracking, no external API calls, fully client-side
 - **Lightweight** - Minimal footprint, fast loading
@@ -19,16 +21,15 @@ A lightweight, customizable client-side cryptocurrency donation widget that's ea
 1. Include the CSS and JS files:
 ```html
 <link rel="stylesheet" href="cryptodonate.css">
-<script src="lib/qrcode.min.js"></script>
 <script src="cryptodonate.js"></script>
 ```
 
 2. Add the widget to your HTML:
 ```html
 <crypto-donate data-theme="light" data-title="Support Us" data-message="Your donations help us grow!">
-    <btc>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</btc>
-    <eth>0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E</eth>
-    <sol>So11111111111111111111111111111111111111112</sol>
+    <btc>bc1qpd8ww2fgqyagef4tpx9arl2ax0eewcsezlxcu9</btc>
+    <eth>0x7c6112ABeE69Ca5fAcC62005Aa08B3FDeC5Db3b1</eth>
+    <sol>GJ4K1jyjXEby3FLHakp6TVi1aSMZbGrKqoCx67oKc4AF</sol>
 </crypto-donate>
 ```
 
@@ -43,7 +44,7 @@ A lightweight, customizable client-side cryptocurrency donation widget that's ea
 ```html
 <!-- Custom foreground color -->
 <crypto-donate data-foreground="#00aa13" data-accent="#ff6b35">
-    <btc>your-btc-address</btc>
+    <btc>bc1qpd8ww2fgqyagef4tpx9arl2ax0eewcsezlxcu9</btc>
 </crypto-donate>
 ```
 
@@ -74,10 +75,10 @@ A lightweight, customizable client-side cryptocurrency donation widget that's ea
     data-message="Every donation makes a difference!"
     data-accent="#4CAF50"
     data-foreground="#ffffff">
-    <btc>your-bitcoin-address</btc>
-    <eth>your-ethereum-address</eth>
-    <sol>your-solana-address</sol>
-    <usdt>your-usdt-address</usdt>
+    <btc>bc1qpd8ww2fgqyagef4tpx9arl2ax0eewcsezlxcu9</btc>
+    <eth>0x7c6112ABeE69Ca5fAcC62005Aa08B3FDeC5Db3b1</eth>
+    <sol>GJ4K1jyjXEby3FLHakp6TVi1aSMZbGrKqoCx67oKc4AF</sol>
+    <usdt>0x7c6112ABeE69Ca5fAcC62005Aa08B3FDeC5Db3b1</usdt>
     <xmr>your-monero-address</xmr>
 </crypto-donate>
 ```
@@ -99,23 +100,6 @@ The widget creates a small trigger button that opens a modal overlay when clicke
 2. View the QR code for easy mobile scanning
 3. Copy the wallet address with one click
 4. Close the modal when done
-
-## File Structure
-
-```
-cryptodonate.js/
-├── cryptodonate.js      # Main widget logic
-├── cryptodonate.css     # Styling and themes
-├── index.html          # Demo page
-├── lib/
-│   └── qrcode.min.js   # QR code generation
-└── assets/
-    ├── btc.svg         # Cryptocurrency logos
-    ├── eth.svg
-    ├── sol.svg
-    ├── usdt.svg
-    └── xmr.svg
-```
 
 ## Browser Support
 
