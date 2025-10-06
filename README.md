@@ -4,6 +4,11 @@ A lightweight, customizable client-side cryptocurrency donation widget that's ea
 
 Accept Bitcoin, Ethereum, Solana, USDT, and Monero donations using QR codes and multiple themes.
 
+## Showcase
+
+![Different widget styles](./1.png)
+![Clean user interface](./2.png)
+
 ## Features
 
 - **Zero Dependencies** - Pure vanilla JavaScript, no frameworks required
