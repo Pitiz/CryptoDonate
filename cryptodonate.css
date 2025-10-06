@@ -1,0 +1,640 @@
+:root {
+    --crypto-donate-width: 350px;
+    --crypto-donate-accent: #007bff;
+    --crypto-donate-radius: 12px;
+    --crypto-donate-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide unprocessed crypto-donate elements to prevent FOUC */
+crypto-donate:not(:defined) {
+    display: none;
+}
+
+/* Alternative approach: hide content until JavaScript processes it */
+crypto-donate {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+crypto-donate.cryptodonate-loaded {
+    opacity: 1;
+}
+
+.cryptodonate-widget {
+    width: var(--crypto-donate-width);
+    border-radius: var(--crypto-donate-radius);
+    box-shadow: var(--crypto-donate-shadow);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: var(--crypto-donate-bg);
+    color: var(--crypto-donate-text);
+}
+
+.cryptodonate-widget[data-theme="dark"] {
+    --crypto-donate-bg: #1a202c;
+    --crypto-donate-text: #e2e8f0;
+    --crypto-donate-border: #4a5568;
+    --crypto-donate-btn-bg: #4a5568;
+    --crypto-donate-btn-text: #e2e8f0;
+    --crypto-donate-btn-hover: #2d3748;
+    --crypto-donate-input-bg: #2d3748;
+}
+
+.cryptodonate-widget[data-theme="light"] {
+    --crypto-donate-bg: #ffffff;
+    --crypto-donate-text: #2d3748;
+    --crypto-donate-border: #e2e8f0;
+    --crypto-donate-btn-bg: #e2e8f0;
+    --crypto-donate-btn-text: #2d3748;
+    --crypto-donate-btn-hover: #cbd5e0;
+    --crypto-donate-input-bg: #f7fafc;
+}
+
+.cryptodonate-widget[data-theme="transparent"] {
+    --crypto-donate-bg: rgba(255, 255, 255, 0.1);
+    --crypto-donate-text: #ffffff;
+    --crypto-donate-border: rgba(255, 255, 255, 0.2);
+    --crypto-donate-btn-bg: rgba(255, 255, 255, 0.1);
+    --crypto-donate-btn-text: #ffffff;
+    --crypto-donate-btn-hover: rgba(255, 255, 255, 0.2);
+    --crypto-donate-input-bg: rgba(255, 255, 255, 0.05);
+}
+
+/* Custom foreground color override */
+.cryptodonate-widget[data-foreground] {
+    --crypto-donate-text: attr(data-foreground);
+    --crypto-donate-btn-text: attr(data-foreground);
+}
+
+/* Fallback for browsers that don't support attr() with custom properties */
+
+
+/* Ensure copy button text uses foreground color */
+.cryptodonate-widget[data-foreground] .cryptodonate-copy-btn {
+    color: var(--crypto-donate-text);
+}
+
+.cryptodonate-widget[data-foreground] .cryptodonate-copy-btn svg {
+    color: var(--crypto-donate-text);
+}
+
+/* Ensure title uses foreground color */
+.cryptodonate-widget[data-foreground] .cryptodonate-title {
+    color: var(--crypto-donate-text);
+}
+
+/* Generic rule for custom hex colors - applies to any data-foreground value */
+.cryptodonate-trigger[data-foreground] .cryptodonate-trigger-text {
+    color: var(--crypto-donate-text, currentColor);
+}
+
+/* Transparent theme specific enhancements */
+.cryptodonate-widget[data-theme="transparent"] .cryptodonate-selected-crypto,
+.cryptodonate-widget[data-theme="transparent"] .cryptodonate-dropdown-menu {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.cryptodonate-widget[data-theme="transparent"] .cryptodonate-dropdown-menu {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cryptodonate-widget[data-theme="transparent"] .cryptodonate-option:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cryptodonate-header {
+    padding: 20px;
+    text-align: center;
+}
+
+.cryptodonate-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 5px;
+}
+
+.cryptodonate-message {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.cryptodonate-body {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cryptodonate-crypto-select {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cryptodonate-selected-crypto {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--crypto-donate-input-bg);
+    border: 1px solid var(--crypto-donate-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.cryptodonate-selected-crypto:hover {
+    border-color: var(--crypto-donate-accent);
+}
+
+.cryptodonate-selected-crypto.active {
+    border-color: var(--crypto-donate-accent);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.cryptodonate-selected-icon,
+.cryptodonate-option-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cryptodonate-selected-icon img,
+.cryptodonate-option-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Preserve original SVG colors for all themes */
+.cryptodonate-widget[data-theme="light"] .cryptodonate-selected-icon img,
+.cryptodonate-widget[data-theme="light"] .cryptodonate-option-icon img {
+    filter: none; /* Show original colors */
+}
+
+/* For dark theme, preserve original colors */
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-selected-icon img,
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-option-icon img {
+    filter: none; /* Show original colors */
+}
+
+/* For transparent theme, preserve original colors */
+.cryptodonate-widget[data-theme="transparent"] .cryptodonate-selected-icon img,
+.cryptodonate-widget[data-theme="transparent"] .cryptodonate-option-icon img {
+    filter: none; /* Show original colors */
+}
+
+.cryptodonate-fallback-icon {
+    display: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.cryptodonate-selected-text,
+.cryptodonate-option-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cryptodonate-selected-name,
+.cryptodonate-option-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--crypto-donate-text);
+    line-height: 1.2;
+}
+
+.cryptodonate-selected-symbol,
+.cryptodonate-option-symbol {
+    font-size: 0.8rem;
+    color: var(--crypto-donate-text);
+    opacity: 0.7;
+    line-height: 1.2;
+}
+
+.cryptodonate-dropdown-arrow {
+    width: 20px;
+    height: 20px;
+    color: var(--crypto-donate-text);
+    opacity: 0.7;
+    transition: transform 0.2s ease;
+}
+
+.cryptodonate-selected-crypto.active .cryptodonate-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.cryptodonate-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--crypto-donate-bg);
+    border: 1px solid var(--crypto-donate-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    margin-top: 4px;
+    max-height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* Custom scrollbar for dropdown menu */
+.cryptodonate-dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cryptodonate-dropdown-menu::-webkit-scrollbar-track {
+    background: var(--crypto-donate-input-bg);
+    border-radius: 3px;
+}
+
+.cryptodonate-dropdown-menu::-webkit-scrollbar-thumb {
+    background: var(--crypto-donate-border);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.cryptodonate-dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background: var(--crypto-donate-btn-hover);
+}
+
+/* Firefox scrollbar styling */
+.cryptodonate-dropdown-menu {
+    scrollbar-width: thin;
+    scrollbar-color: var(--crypto-donate-border) var(--crypto-donate-input-bg);
+}
+
+.cryptodonate-dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.cryptodonate-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid var(--crypto-donate-border);
+}
+
+.cryptodonate-option:last-child {
+    border-bottom: none;
+}
+
+.cryptodonate-option:hover {
+    background-color: var(--crypto-donate-btn-hover);
+}
+
+/* Dark theme specific overrides */
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-dropdown-menu {
+    background: var(--crypto-donate-bg);
+    border-color: var(--crypto-donate-border);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-selected-crypto {
+    background: var(--crypto-donate-input-bg);
+    border-color: var(--crypto-donate-border);
+}
+
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-selected-crypto:hover {
+    border-color: var(--crypto-donate-accent);
+}
+
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-option {
+    border-bottom-color: var(--crypto-donate-border);
+}
+
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-option:hover {
+    background-color: var(--crypto-donate-btn-hover);
+}
+
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-address {
+    background: var(--crypto-donate-input-bg);
+    border-color: var(--crypto-donate-border);
+    color: var(--crypto-donate-text);
+}
+
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-copy-btn {
+    background: var(--crypto-donate-btn-bg);
+    border-color: var(--crypto-donate-border);
+    color: var(--crypto-donate-btn-text);
+}
+
+.cryptodonate-widget[data-theme="dark"] .cryptodonate-copy-btn:hover {
+    background: var(--crypto-donate-btn-hover);
+}
+
+.cryptodonate-qr-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.cryptodonate-coin-logo {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 2px solid #fff;
+}
+
+.cryptodonate-qr-code {
+    width: 160px;
+    height: 160px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cryptodonate-qr-code img {
+    border-radius: 4px;
+}
+
+.cryptodonate-address-container {
+    width: 100%;
+    position: relative;
+}
+
+.cryptodonate-address {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    background: var(--crypto-donate-input-bg);
+    border: 1px solid var(--crypto-donate-border);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--crypto-donate-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+.cryptodonate-copy-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--crypto-donate-btn-bg);
+    border: 1px solid var(--crypto-donate-border);
+    color: var(--crypto-donate-btn-text);
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cryptodonate-copy-btn:hover {
+    background-color: var(--crypto-donate-btn-hover);
+}
+
+.cryptodonate-copy-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.cryptodonate-copy-feedback {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.cryptodonate-copy-feedback.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Overlay and Modal Styles */
+.cryptodonate-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cryptodonate-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cryptodonate-modal {
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.cryptodonate-overlay.visible .cryptodonate-modal {
+    transform: scale(1);
+}
+
+.cryptodonate-close-btn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    font-size: 1.5rem;
+    color: #333;
+    line-height: 1;
+}
+
+/* Trigger Button Styles */
+.cryptodonate-trigger {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #2d3748;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cryptodonate-trigger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* Dark theme trigger button */
+crypto-donate[data-theme="dark"] .cryptodonate-trigger {
+    background: #2d3748;
+    color: #e2e8f0;
+    border-color: #4a5568;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+crypto-donate[data-theme="dark"] .cryptodonate-trigger:hover {
+    background: #1a202c;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Transparent theme trigger button */
+crypto-donate[data-theme="transparent"] .cryptodonate-trigger {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+crypto-donate[data-theme="transparent"] .cryptodonate-trigger:hover {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.cryptodonate-trigger svg {
+    width: 48px;
+    height: 48px;
+    color: var(--crypto-donate-accent, #007bff);
+}
+
+.cryptodonate-trigger-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Overlapping crypto icons for trigger button */
+.cryptodonate-trigger-icons {
+    position: relative;
+    width: 75px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.crypto-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    position: absolute;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+}
+
+.crypto-icon-1 {
+    left: 0;
+    z-index: 3;
+    background-color: #2a2a2a;
+    padding: 4px;
+}
+
+.crypto-icon-2 {
+    left: 18px;
+    z-index: 2;
+    background-color: #627eea;
+    padding: 4px;
+}
+
+.crypto-icon-3 {
+    left: 36px;
+    z-index: 1;
+    background-color: #00d4aa;
+    padding: 4px;
+}
+
+.crypto-icon-1, .crypto-icon-2, .crypto-icon-3 {
+    user-select: none;
+}
+
+.cryptodonate-trigger:hover .crypto-icon-1 {
+    transform: scale(1.05) translateX(-5px);
+}
+
+.cryptodonate-trigger:hover .crypto-icon-2 {
+    transform: translateX(0px) scale(1.05);
+}
+
+.cryptodonate-trigger:hover .crypto-icon-3 {
+    transform: translateX(5px);
+}
+
+.crypto-icon img {
+    width: 100%;
+    height: 100%;
+    filter: none; /* Preserve original SVG colors */
+}
+
+.cryptodonate-crypto-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--crypto-donate-border-color);
+    background-color: transparent;
+    color: var(--crypto-donate-text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.cryptodonate-crypto-btn:hover {
+    border-color: var(--crypto-donate-accent);
+    color: var(--crypto-donate-accent);
+}
+
+.cryptodonate-crypto-btn.active {
+    background-color: var(--crypto-donate-accent);
+    color: #fff;
+    border-color: var(--crypto-donate-accent);
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoDonate.js Demo</title>
+    <link rel="stylesheet" href="cryptodonate.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>html demo</h1>
+
+    <div class="container">
+        <!-- Light Theme Example -->
+        <crypto-donate data-theme="light" data-title="Donate Crypto" data-message="Your support helps us keep building.">
+            <btc>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</btc>
+            <eth>0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E</eth>
+            <sol>So11111111111111111111111111111111111111112</sol>
+            <xmr>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</xmr>
+            <usdt>0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E</usdt>
+        </crypto-donate>
+
+        <!-- Dark Theme Example -->
+        <crypto-donate data-theme="dark" data-title="Support Our Project" data-message="Donations are appreciated!" data-accent="#4CAF50">
+            <btc>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</btc>
+            <eth>0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E</eth>
+            <sol>So11111111111111111111111111111111111111112</sol>
+            <xmr>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</xmr>
+            <usdt>0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E</usdt>
+        </crypto-donate>
+
+        <!-- Transparent Theme Example -->
+        <crypto-donate data-theme="transparent" data-title="Transparent Donation" data-message="Glassmorphism design with backdrop blur." data-accent="#ffffff">
+            <btc>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</btc>
+            <eth>0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E</eth>
+            <sol>So11111111111111111111111111111111111111112</sol>
+            <xmr>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</xmr>
+            <usdt>0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E</usdt>
+        </crypto-donate>
+
+        <!-- Custom Foreground Color Example -->
+        <crypto-donate data-theme="light" data-foreground="#0d5e58" data-title="Custom colored text" data-message="Custom foreground color." data-accent="#0d5e58">
+            <btc>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</btc>
+            <eth>0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E</eth>
+            <sol>So11111111111111111111111111111111111111112</sol>
+            <xmr>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</xmr>
+            <usdt>0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E</usdt>
+        </crypto-donate>
+    </div>
+
+    <script src="lib/qrcode.min.js"></script>
+    <script src="cryptodonate.js"></script>
+</body>
+</html>
