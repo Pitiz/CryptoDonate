@@ -4,6 +4,8 @@ A lightweight, customizable client-side cryptocurrency donation widget that's ea
 
 Accept donations in any cryptocurrency using QR codes and multiple themes.
 
+Full credits to [CryptoFonts](https://github.com/Cryptofonts) for the SVG icons.
+
 ## Showcase
 
 [View HTML Example](https://pitz8.github.io/CryptoDonate/)
