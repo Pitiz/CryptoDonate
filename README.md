@@ -2,7 +2,7 @@
 
 A lightweight, customizable client-side cryptocurrency donation widget that's easy to embed on any website.
 
-Accept Bitcoin, Ethereum, Solana, USDT, and Monero donations using QR codes and multiple themes.
+Accept donations in any cryptocurrency using QR codes and multiple themes.
 
 ## Showcase
 
@@ -17,7 +17,7 @@ Accept Bitcoin, Ethereum, Solana, USDT, and Monero donations using QR codes and 
 - **Multiple Themes** - Light, dark, and transparent glass themes
 - **Responsive Design** - Works perfectly on desktop and mobile devices
 - **Highly Customizable** - Customizable colors, titles, messages, and accent colors
-- **Multi-Crypto Support** - Bitcoin, Ethereum, Solana, USDT, and Monero (and more!)
+- **Universal Crypto Support** - Supports any cryptocurrency with automatic icon fetching and fallback generation
 - **One-Click Copy** - Copy wallet addresses with visual feedback
 - **Privacy-First** - No tracking, no external API calls, fully client-side
 - **Lightweight** - Minimal footprint, fast loading
@@ -56,11 +56,20 @@ Accept Bitcoin, Ethereum, Solana, USDT, and Monero donations using QR codes and 
 ```
 
 ### Supported Cryptocurrencies
+**All cryptocurrencies are supported!** Simply use the crypto symbol as the tag name:
 - `<btc>` - Bitcoin
 - `<eth>` - Ethereum  
 - `<sol>` - Solana
 - `<usdt>` - Tether USD
-- `<xmr>` - Monero
+- `<usdc>` - USD Coin
+- `<ada>` - Cardano
+- `<doge>` - Dogecoin
+- `<matic>` - Polygon
+- `<avax>` - Avalanche
+- `<link>` - Chainlink
+- `<any-crypto>` - Any cryptocurrency symbol
+
+*The widget automatically fetches icons and generates appropriate styling for any cryptocurrency.*
 
 ## Configuration Options
 
@@ -86,7 +95,9 @@ Accept Bitcoin, Ethereum, Solana, USDT, and Monero donations using QR codes and 
     <eth>0x7c6112ABeE69Ca5fAcC62005Aa08B3FDeC5Db3b1</eth>
     <sol>GJ4K1jyjXEby3FLHakp6TVi1aSMZbGrKqoCx67oKc4AF</sol>
     <usdt>0x7c6112ABeE69Ca5fAcC62005Aa08B3FDeC5Db3b1</usdt>
-    <xmr>your-monero-address</xmr>
+    <usdc>0x7c6112ABeE69Ca5fAcC62005Aa08B3FDeC5Db3b1</usdc>
+    <ada>addr1qx2fxv2umyhttkxyxp8x0dlpdt3k6cwng5pxj3jhsyd</ada>
+    <doge>DH5yaieqoZN36fDVciNyRueRGvGLR3mr7L</doge>
 </crypto-donate>
 ```
 
