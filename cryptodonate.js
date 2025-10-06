@@ -49,7 +49,7 @@ class CryptoDonateElement extends HTMLElement {
 
         trigger.innerHTML = `
             <div class="cryptodonate-trigger-icons">
-                <img src="https://raw.githubusercontent.com/Cryptofonts/cryptoicons/refs/heads/master/SVG/btc.svg" alt="BTC" class="crypto-icon crypto-icon-1">
+                <img src="https://raw.githubusercontent.com/pitz8/CryptoDonate/refs/heads/master/SVG/btc.svg" alt="BTC" class="crypto-icon crypto-icon-1">
                 <img src="https://raw.githubusercontent.com/Cryptofonts/cryptoicons/refs/heads/master/SVG/eth.svg" alt="ETH" class="crypto-icon crypto-icon-2">
                 <img src="https://raw.githubusercontent.com/Cryptofonts/cryptoicons/refs/heads/master/SVG/sol.svg" alt="SOL" class="crypto-icon crypto-icon-3">
             </div>
