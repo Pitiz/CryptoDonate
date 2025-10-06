@@ -6,7 +6,7 @@ Accept Bitcoin, Ethereum, Solana, USDT, and Monero donations using QR codes and 
 
 ## Showcase
 
-[View HTML Example](https://pitiz.github.io/CryptoDonate/)
+[View HTML Example](https://pitz8.github.io/CryptoDonate/)
 
 ![Different widget styles](./1.png)
 ![Clean user interface](./2.png)
